@@ -51,7 +51,7 @@ const PlayerList = {
         for (let id in PlayerList.players) {
             let player = PlayerList.players[id]
             PlayerList.div().append(`
-                <span class="player color-${player.role} pull-right bg-opacity-dark">
+                <span class="player color-${player.role} pull-right">
                     <span class="">${player.name}</span>
                     <small class="color-level">${player.level == 80 ? "" : player.level}</small>
                 </span>
