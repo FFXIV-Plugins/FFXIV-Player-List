@@ -1,4 +1,4 @@
-# FFXIV 关键字提醒
+# FFXIV 玩家列表
 
 [🇺🇸 English](README.md) | 🇨🇳 简体中文
 

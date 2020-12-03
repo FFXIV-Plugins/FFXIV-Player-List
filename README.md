@@ -1,4 +1,4 @@
-# FFXIV Keyword Notif
+# FFXIV Player List
 
 🇺🇸 English | [🇨🇳 简体中文](README-CN.md)
 
