@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="3rd/bootstrap.min.css">
+        <script src="3rd/common.min.js"></script>
+        <script src="3rd/jquery.js"></script>
+        <script charset="utf-8" src="ffxivplayerlist.js"></script>
+        <style>
+            .bg-opacity-dark {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+            body {
+                background-color: transparent;
+            }
+            .hidden {
+                display: none;
+            }
+            .color-tank {
+                color: #58B2DC;
+            }
+            .color-dps {
+                color: #E16B8C;
+            }
+            .color-healer {
+                color: #B5CAA0;
+            }
+            .color-gatherer {
+                color: #A28C37;
+            }
+            .color-crafter {
+                color: #91989F;
+            }
+            .color-unknown {
+                color: white;
+            }
+            .color-level {
+                color: #BDC0BA;
+            }
+            .player:before {
+                content: '·';
+                color: silver;
+                background: transparent;
+            }
+            .player:first-of-type:before {
+                content: '';
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid bg-transparent">
+            <div class="row mt-1">
+                <div class="col">
+                    <span id="hidable-toggle" class="btn btn-outline-light btn-sm bg-opacity-dark" onclick="Hidable.toggle()">🗺️</span>
+                    <span class="hidable">
+                        <span class="btn btn-sm text-white btn-outline-dark bg-opacity-dark" onclick="PlayerList.clear()">❌</span>
+                        <span class="btn btn-sm text-white btn-outline-dark bg-opacity-dark" onclick="FontSize.toggle()">🗚</span>
+                        <div id="player-list-div" class="">
+                        </div>
+                    </span>
+                </div><!--.col-->
+            </div><!--.row-->
+        </div><!--.container-->
+    </body>
+</html>
