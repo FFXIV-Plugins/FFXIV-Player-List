@@ -80,6 +80,28 @@ const PlayerList = {
         }
         PlayerList.updateHtml()
     },
+    test: () => {
+        const fakeLevel = () => {
+            let level = Math.floor(Math.random() * 80 * 1.5) + 1
+            return  level >= 80 ? 80 : level
+        }
+        let fakePlayers = [
+            {id: 1, name: "Mr.Crafter", role: "crafter", job: "ALC"},
+            {id: 2, name: "Mrs.Gatherer", role: "gatherer", job: "FSH"},
+            {id: 3, name: "Lord DPS", role: "dps", job: "MCH"},
+            {id: 4, name: "King Tank", role: "tank", job: "DRK"},
+            {id: 5, name: "Miss Healer", role: "healer", job: "AST"},
+            {id: 6, name: "能工巧匠先生", role: "crafter", job: "ALC"},
+            {id: 7, name: "大地使者夫人", role: "gatherer", job: "FSH"},
+            {id: 8, name: "输出领主", role: "dps", job: "MCH"},
+            {id: 9, name: "高贵坦克", role: "tank", job: "DRK"},
+            {id: 10, name: "治疗小姐", role: "healer", job: "AST"},
+        ]
+        for (i in fakePlayers) {
+            fakePlayers[i].level = fakeLevel()
+            PlayerList.add(fakePlayers[i])
+        }
+    },
 }
 
 const FontSize = {
