@@ -11,6 +11,9 @@
 * Normally, only an icon shows up. Click to hide/show dashboard.
     * ![screenshot-02](resources/screenshot-02.png)
 
+* Click the lock and set "Click Though" in the overlay plugin to enter focus mode. Click the lock again to unlock.
+    * ![screenshot-03](resources/screenshot-03.png)
+
 ## Usage
 ### Get Started
 1. Open ACT → Plugin → ngld Overlay → new.

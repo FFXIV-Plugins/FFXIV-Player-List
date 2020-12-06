@@ -140,6 +140,23 @@ const Hidable = {
     },
 }
 
+const FocusMode = {
+    configKey: "playerlist:focus",
+    updateHtml: () => {
+        if (Config.get(FocusMode.configKey)) {
+            $('.focus-hidden').hide()
+            $('.focus-show').show()
+        } else {
+            $('.focus-hidden').show()
+            $('.focus-show').hide()
+        }
+    },
+    toggle: () => {
+        Config.set(FocusMode.configKey, Config.get(FocusMode.configKey) ? "" : "on")
+        FocusMode.updateHtml()
+    },
+}
+
 function update (data) {
     let content = JSON.stringify(data)
     if (!data.line) {
@@ -174,8 +191,9 @@ addOverlayListener("ChangeZone", (e) => PlayerList.clear())
 startOverlayEvents()
 
 $(function () {
-    Hidable.updateHtml()
-    FontSize.updateHtml()
     i18n()
+    Hidable.updateHtml()
+    FocusMode.updateHtml()
+    FontSize.updateHtml()
     PlayerList.updateHtml()
 })

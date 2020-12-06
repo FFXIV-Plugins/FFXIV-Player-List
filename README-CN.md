@@ -11,6 +11,9 @@
 * 平时，只显示一个图标。点击以展开和隐藏界面。
     * ![screenshot-02](resources/screenshot-02.png)
 
+* 点击小锁头，并在插件中设置“鼠标穿透”，进入无干扰模式；再次点击小锁头解锁。
+    * ![screenshot-03](resources/screenshot-03.png)
+
 ## 使用方法
 ### 初次使用
 1. 打开 ACT → 插件 → ngld 悬浮窗插件 → 新建。

@@ -45,18 +45,23 @@
             .player:first-of-type:before {
                 content: '';
             }
+            .text-shadow {
+                text-shadow: 1px 1px 1px black;
+            }
         </style>
     </head>
-    <body>
+    <body class="overflow-hidden">
         <div class="container-fluid bg-transparent">
             <div class="row">
                 <div class="col p-1">
-                    <span id="hidable-toggle" class="btn btn-outline-light btn-sm bg-opacity-dark" onclick="Hidable.toggle()">🗺️</span>
+                    <span id="hidable-toggle" class="focus-hidden btn btn-outline-light btn-sm bg-opacity-dark" onclick="Hidable.toggle()">🗺️</span>
                     <span class="hidable">
-                        <span class="btn btn-sm text-white btn-outline-dark bg-opacity-dark" onclick="PlayerList.clear()">❌</span>
-                        <span class="btn btn-sm text-white btn-outline-dark bg-opacity-dark" onclick="FontSize.toggle()">🗚</span>
+                        <span class="focus-hidden btn btn-sm text-white btn-outline-dark text-shadow" onclick="PlayerList.clear()">❌</span>
+                        <span class="focus-hidden btn btn-sm text-white btn-outline-dark text-shadow" onclick="FontSize.toggle()">🗚</span>
+                        <span class="focus-hidden btn btn-sm text-white" onclick="FocusMode.toggle()">🔒</span>
+                        <span class="focus-show btn btn-sm text-white" onclick="FocusMode.toggle()">🔓</span>
                         <div class="p-1">
-                            <div id="player-list-div" class="bg-opacity-dark"></div>
+                            <div id="player-list-div" class="p-1 text-shadow"></div>
                         </div>
                     </span>
                 </div><!--.col-->
