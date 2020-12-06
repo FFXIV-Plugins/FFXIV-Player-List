@@ -162,13 +162,9 @@ function update (data) {
                 role: PlayerParser.parseRole(job),
                 name: logName,
             })
-        } else {
+        } else {  //Player/Npc/Monster leave the range
             PlayerList.remove(logId)
         }
-    }
-    if (logType == '04') {  //Player/Npc/Monster leave the range
-        let [logId, logName, logJob, logLevel, logUnknown, logServerId, logServerName, ...logEtc] = logProperties
-
     }
 }
 
