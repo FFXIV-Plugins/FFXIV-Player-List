@@ -2,7 +2,7 @@
 
 [🇺🇸 English](README.md) | 🇨🇳 简体中文
 
-[🔗FFXIV 玩家列表](http://ffxiv-plugins.migawari.top/FFXIV-Player-List/README-CN.md) 这是一个用于 FF14 ACT 插件 Ngld 悬浮窗插件的插件。显示周围玩家的名字，根据职业进行着色，未满级的玩家会显示其等级。
+[🔗FFXIV 玩家列表](http://ffxiv-plugins.migawari.top/FFXIV-Player-List/README-CN.html) 这是一个用于 FF14 ACT 插件 Ngld 悬浮窗插件的插件。显示周围玩家的名字，根据职业进行着色，未满级的玩家会显示其等级。
 
 ## 截图
 * 显示周围玩家列表；可切换字体小、中、大。
