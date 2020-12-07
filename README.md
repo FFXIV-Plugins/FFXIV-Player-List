@@ -2,7 +2,7 @@
 
 🇺🇸 English | [🇨🇳 简体中文](README-CN.md)
 
-[🔗 FFXIV Player List](https://ffxiv-plugins.github.io/FFXIV-Player-List/) This is a plugin for FFXIV ACT Ngld Overlay. Show players around you. Colored name based on the job. For players under level 80, show their levels.
+[🔗FFXIV Player List](https://ffxiv-plugins.github.io/FFXIV-Player-List/) This is a plugin for FFXIV ACT Ngld Overlay. Show players around you. Colored name based on the job. For players under level 80, show their levels.
 
 ## Screenshots
 * Show players around you in the list. Can select font size from small, medium or large.
@@ -21,6 +21,4 @@
 3. Overlay Path: `https://ffxiv-plugins.github.io/FFXIV-Player-List/ffxivplayerlist.html`
 
 ## 3rd Party Libs
-* jQuery: https://www.bootcdn.cn/jquery/
-* BootStrap4: https://www.bootcdn.cn/twitter-bootstrap/
-* Ngld Common JS: https://ngld.github.io/OverlayPlugin/assets/shared/common.min.js
+* [🔗jQuery](https://www.bootcdn.cn/jquery/) · [🔗BootStrap4](https://www.bootcdn.cn/twitter-bootstrap/) · [🔗Ngld Common JS](https://ngld.github.io/OverlayPlugin/assets/shared/common.min.js)
