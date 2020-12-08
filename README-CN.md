@@ -18,7 +18,7 @@
 ### 初次使用
 1. 打开 ACT → 插件 → ngld 悬浮窗插件 → 新建。
 2. 名称：随意，预设：自订，种类：数据统计。
-3. 悬浮窗路径：`http://ffxiv-plugins.migawari.top/FFXIV-Player-List/ffxivplayerlist.html`
+3. 悬浮窗路径：`https://ffxiv-plugins.migawari.top/FFXIV-Player-List/ffxivplayerlist.html`
 
 ## 第三方库
 * [🔗jQuery](https://www.bootcdn.cn/jquery/) · [🔗BootStrap4](https://www.bootcdn.cn/twitter-bootstrap/) · [🔗Ngld Common JS](https://ngld.github.io/OverlayPlugin/assets/shared/common.min.js)
