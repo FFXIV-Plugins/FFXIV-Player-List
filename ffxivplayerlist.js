@@ -46,11 +46,11 @@ const PlayerParser = {
 const PlayerCount = {
     div: () => $("#player-count"),
     updateHtml: () => {
-        let player_count = Object.keys(PlayerList.players).length
-        if (player_count == 1) {
-            PlayerCount.div().text("")
-        } else {
+        let player_count = Object.keys(PlayerList.players).length - 1  // exclude player self.
+        if (player_count > 0) {
             PlayerCount.div().text(player_count)
+        } else {
+            PlayerCount.div().text("")
         }
     }
 }
