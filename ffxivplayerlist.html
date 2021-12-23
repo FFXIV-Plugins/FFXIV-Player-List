@@ -54,7 +54,10 @@
         <div class="container-fluid bg-transparent">
             <div class="row">
                 <div class="col p-1">
-                    <span id="hidable-toggle" class="focus-hidden btn btn-outline-light btn-sm bg-opacity-dark" onclick="Hidable.toggle()">🗺️</span>
+                    <span id="hidable-toggle" class="focus-hidden btn btn-outline-light btn-sm bg-opacity-dark" onclick="Hidable.toggle()">
+                        🚶
+                        <span id="player-count" class="text-shadow"></span>
+                    </span>
                     <span class="hidable">
                         <span class="focus-hidden btn btn-sm text-white btn-outline-dark" onclick="PlayerList.clear()">❌</span>
                         <span class="focus-hidden btn btn-sm text-white btn-outline-dark text-shadow" onclick="FontSize.toggle()">

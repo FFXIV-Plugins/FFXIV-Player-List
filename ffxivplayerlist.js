@@ -43,6 +43,18 @@ const PlayerParser = {
     }
 }
 
+const PlayerCount = {
+    div: () => $("#player-count"),
+    updateHtml: () => {
+        let player_count = Object.keys(PlayerList.players).length
+        if (player_count == 1) {
+            PlayerCount.div().text("")
+        } else {
+            PlayerCount.div().text(player_count)
+        }
+    }
+}
+
 const PlayerList = {
     players: {},
     div: () => $("#player-list-div"),
@@ -57,6 +69,7 @@ const PlayerList = {
                 </span>
             `)
         }
+        PlayerCount.updateHtml()
     },
     clear: () => {
         PlayerList.players = {}
