@@ -1,18 +1,18 @@
 # FFXIV Player List
 
-🇺🇸 English | [🇨🇳 简体中文](README-CN.md)
+> 🇺🇸 English · [🇨🇳 简体中文](README-CN.md)
 
 [🔗FFXIV Player List](https://ffxiv-plugins.github.io/FFXIV-Player-List/) This is a plugin for FFXIV ACT Ngld Overlay. Show players around you. Colored name based on the job. For players under level 80, show their levels.
 
 ## Screenshots
 * Show players around you in the list. Can select font size from small, medium or large.
-    * ![screenshot-01](resources/screenshot-01.png)
+    * ![screenshot-01](resources/screenshot-01.jpg)
 
-* Normally, only an icon shows up. Click to hide/show dashboard.
-    * ![screenshot-02](resources/screenshot-02.png)
+* Normally, only an icon shows up. Click to hide/show dashboard. The number of players around you is displayed.
+    * ![screenshot-02](resources/screenshot-02.jpg)
 
 * Click the lock and set "Click Though" in the overlay plugin to enter focus mode. Click the lock again to unlock.
-    * ![screenshot-03](resources/screenshot-03.png)
+    * ![screenshot-03](resources/screenshot-03.jpg)
 
 ## Usage
 ### Get Started
