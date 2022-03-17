@@ -22,7 +22,6 @@ const Config = {
 const PlayerParser = {
     parseLevel: (levelHex) => parseInt(levelHex, 16),
     parseJob:(jobId) => {
-        console.log(jobId)
         jobIdMap = {
             "1": "GLA",
             "2": "PGL",
@@ -66,7 +65,6 @@ const PlayerParser = {
             "28": "SGE"
         }
         let jobAbbr = jobIdMap[jobId]
-        console.log(jobAbbr)
         return jobAbbr || `Unknown (Job ID: ${jobId})`
     },
     parseRole: (job) => {
