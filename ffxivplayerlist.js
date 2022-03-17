@@ -1,3 +1,5 @@
+const MAX_LEVEL = 90
+
 function i18n () {
     callOverlayHandler({call: "getLanguage"}).then((lang) => {
         if (lang.language=== 'Chinese') {
@@ -106,7 +108,7 @@ const PlayerList = {
             PlayerList.div().append(`
                 <span class="player color-${player.role} pull-right">
                     <span class="">${player.name}</span>
-                    <small class="color-level">${player.level == 80 ? "" : player.level}</small>
+                    <em class="color-level">${player.level == 90 ? "" : player.level}</em>
                 </span>
             `)
         }
@@ -136,8 +138,8 @@ const PlayerList = {
     },
     test: () => {
         const fakeLevel = () => {
-            let level = Math.floor(Math.random() * 80 * 1.5) + 1
-            return  level >= 80 ? 80 : level
+            let level = Math.floor(Math.random() * MAX_LEVEL * 1.5) + 1
+            return  level >= MAX_LEVEL ? MAX_LEVEL : level
         }
         let fakePlayers = [
             {id: 1, name: "Mr.Crafter", role: "crafter", job: "ALC"},
@@ -147,9 +149,9 @@ const PlayerList = {
             {id: 5, name: "Miss Healer", role: "healer", job: "AST"},
             {id: 6, name: "能工巧匠先生", role: "crafter", job: "ALC"},
             {id: 7, name: "大地使者夫人", role: "gatherer", job: "FSH"},
-            {id: 8, name: "输出领主", role: "dps", job: "MCH"},
+            {id: 8, name: "输出领主", role: "dps", job: "RPR"},
             {id: 9, name: "高贵坦克", role: "tank", job: "DRK"},
-            {id: 10, name: "治疗小姐", role: "healer", job: "AST"},
+            {id: 10, name: "治疗小姐", role: "healer", job: "SGE"},
         ]
         for (i in fakePlayers) {
             fakePlayers[i].level = fakeLevel()
