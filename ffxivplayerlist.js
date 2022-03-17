@@ -1,3 +1,4 @@
+const VERSION = "6.0.0"
 const MAX_LEVEL = 90
 
 function i18n () {
@@ -252,4 +253,5 @@ $(function () {
     FocusMode.updateHtml()
     FontSize.updateHtml()
     PlayerList.updateHtml()
+    console.log(`[WELCOME] FFXIV Player List: Version ${VERSION}`)
 })
