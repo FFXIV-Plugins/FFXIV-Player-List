@@ -22,16 +22,59 @@ const Config = {
 const PlayerParser = {
     parseLevel: (levelHex) => parseInt(levelHex, 16),
     parseJob:(jobId) => {
-        jobIdMap = {1: "GLA", 2: "PGL", 3: "MRD", 4: "LNC", 5: "ARC", 6: "CNJ", 7: "THM", 8: "CRP", 9: "BSM", 10: "ARM", 11: "GSM", 12: "LTW", 13: "WVR", 14: "ALC", 15: "CUL", 16: "MIN", 17: "BTN", 18: "FSH", 19: "PLD", 20: "MNK", 21: "WAR", 22: "DRG", 23: "BRD", 24: "WHM", 25: "BLM", 26: "ACN", 27: "SMN", 28: "SCH", 29: "ROG", 30: "NIN", 31: "MCH", 32: "DRK", 33: "AST", 34: "SAM", 35: "RDM", 36: "BLU", 37: "GNB", 38: "DNC"}
-        let jobAbbr = jobIdMap[parseInt(jobId, 16)]
-        return jobAbbr || 'unknown'
+        console.log(jobId)
+        jobIdMap = {
+            "1": "GLA",
+            "2": "PGL",
+            "3": "MRD",
+            "4": "LNC",
+            "5": "ARC",
+            "6": "CNJ",
+            "7": "THM",
+            "8": "CRP",
+            "9": "BSM",
+            "A": "ARM",
+            "B": "GSM",
+            "C": "LTW",
+            "D": "WVR",
+            "E": "ALC",
+            "F": "CUL",
+            "10": "MIN",
+            "11": "BTN",
+            "12": "FSH",
+            "13": "PLD",
+            "14": "MNK",
+            "15": "WAR",
+            "16": "DRG",
+            "17": "BRD",
+            "18": "WHM",
+            "19": "BLM",
+            "1A": "ACN",
+            "1B": "SMN",
+            "1C": "SCH",
+            "1D": "ROG",
+            "1E": "NIN",
+            "1F": "MCH",
+            "20": "DRK",
+            "21": "AST",
+            "22": "SAM",
+            "23": "RDM",
+            "24": "BLU",
+            "25": "GNB",
+            "26": "DNC",
+            "27": "RPR",
+            "28": "SGE"
+        }
+        let jobAbbr = jobIdMap[jobId]
+        console.log(jobAbbr)
+        return jobAbbr || `Unknown (Job ID: ${jobId})`
     },
     parseRole: (job) => {
         if (["PLD", "WAR", "GNB", "DRK", 'GLA', 'MRD'].includes(job)) {  //TODO: add base jobs
             return "tank"
-        } else if (["WHM", "SCH", "AST", 'CNJ'].includes(job)) {
+        } else if (["WHM", "SCH", "AST", 'CNJ', 'SGE'].includes(job)) {
             return "healer"
-        } else if (["MNK", "DRG", "NIN", "SAM", "BRD", "MCH", "DNC", "SMN", "BLM", "RDM", 'PGL', 'LNC', 'ARC', 'ROG', 'ACN', 'THM', "BLU"].includes(job)) {
+        } else if (["MNK", "DRG", "NIN", "SAM", "BRD", "MCH", "DNC", "SMN", "BLM", "RDM", 'PGL', 'LNC', 'ARC', 'ROG', 'ACN', 'THM', "BLU", "RPR"].includes(job)) {
             return "dps"
         } else if (["MIN", "BTN", "FSH"].includes(job)) {
             return "gatherer"
