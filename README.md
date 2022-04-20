@@ -14,7 +14,7 @@
 * Click the lock and set "Click Though" in the overlay plugin to enter focus mode. Click the lock again to unlock.
     * ![screenshot-03](resources/screenshot-03.jpg)
 
-* Meet Up counts. Click this button will reset the meet up counter after your comfirmation.
+* Meet Up counts. Click this button will reset the meet up counter after your comfirmation. The number of players you ever met is displayed.
     * ![screenshot-03](resources/screenshot-04.jpg)
 
 ## Usage
