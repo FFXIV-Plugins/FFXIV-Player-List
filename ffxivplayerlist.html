@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="3rd/bootstrap.min.css">
         <script src="3rd/common.min.js"></script>
         <script src="3rd/jquery.js"></script>
-        <script charset="utf-8" src="ffxivplayerlist.js?version=6.00.0"></script>
+        <script charset="utf-8" src="ffxivplayerlist.js?version=6.00.1"></script>
         <style>
             .bg-opacity-dark {
                 background-color: rgba(0, 0, 0, 0.5);
@@ -34,9 +34,9 @@
             .color-unknown {
                 color: white;
             }
-            .color-level {
+            .color-dim {
                 color: inherit;
-                filter: brightness(69%)
+                filter: brightness(75%)
             }
             .player {
                 white-space: nowrap;
@@ -63,7 +63,11 @@
                         <span id="player-count" class="text-shadow"></span>
                     </span>
                     <span class="hidable">
-                        <span class="focus-hidden btn btn-sm text-white btn-outline-dark" onclick="PlayerList.clear()">❌</span>
+                        <span class="focus-hidden btn btn-sm text-white btn-outline-dark" onclick="PlayerList.clear()">🧹</span>
+                        <span class="focus-hidden btn btn-sm text-white btn-outline-dark" onclick="if (window.confirm(`❤️: ${MeetUp.count()} → 0?`)) MeetUp.clear()">
+                            ❤️
+                            <span id="meetup-player-count" class="text-shadow"></span>
+                        </span>
                         <span class="focus-hidden btn btn-sm text-white btn-outline-dark text-shadow" onclick="FontSize.toggle()">
                             <small>A</small>A
                         </span>

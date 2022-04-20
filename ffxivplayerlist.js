@@ -1,4 +1,4 @@
-const VERSION = "6.00.0"
+const VERSION = "6.00.1"
 const MAX_LEVEL = 90
 
 function i18n () {
@@ -15,10 +15,47 @@ function i18n () {
 
 const Config = {
     get: function (key) {
-        return window.localStorage.getItem(`config:${key}`)
+        return window.localStorage.getItem(`playerlist:config:${key}`)
     },
     set: function (key, value) {
-        return window.localStorage.setItem(`config:${key}`, value)
+        return window.localStorage.setItem(`playerlist:config:${key}`, value)
+    },
+}
+
+const MeetUp = {
+    get: (key) => {
+        return window.localStorage.getItem(`playerlist:meetup:${key}`)
+    },
+    set: (key, value) => {
+        return window.localStorage.setItem(`playerlist:meetup:${key}`, value)
+    },
+    inc: (key) => {
+        let current = MeetUp.get(key) || 0
+        let result = parseInt(current) + 1
+        MeetUp.set(key, result)
+        return result
+    },
+    keys: () => {
+        let result = []
+        for (let key in window.localStorage) {
+            if (key.startsWith("playerlist:meetup:")) {
+                result.push(key)
+            }
+        }
+        return result
+    },
+    clear: () => {
+        for (let key of MeetUp.keys()) {
+            window.localStorage.removeItem(key)
+        }
+        PlayerList.clear()
+    },
+    count: () => {
+        return MeetUp.keys().length
+    },
+    div: () => $("#meetup-player-count"),
+    updateHtml: () => {
+        MeetUp.div().text(MeetUp.count())
     },
 }
 
@@ -104,16 +141,19 @@ const PlayerList = {
     div: () => $("#player-list-div"),
     updateHtml: () => {
         PlayerList.div().html("")
-        for (let id in PlayerList.players) {
+        let sortedIds = Object.keys(PlayerList.players).sort((id1, id2) => parseInt(PlayerList.players[id2].meetup) - parseInt(PlayerList.players[id1].meetup))
+        for (let id of sortedIds) {
             let player = PlayerList.players[id]
             PlayerList.div().append(`
                 <span class="player color-${player.role} pull-right">
                     <span class="">${player.name}</span>
-                    <em class="color-level">${player.level == 90 ? "" : player.level}</em>
+                    <em class="color-dim">♡${player.meetup}</em>
+                    <em class="small">${player.level == 90 ? "" : "Lv." + player.level}</em>
                 </span>
             `)
         }
         PlayerCount.updateHtml()
+        MeetUp.updateHtml()
     },
     clear: () => {
         PlayerList.players = {}
@@ -128,6 +168,7 @@ const PlayerList = {
             job: player.job,
             level: player.level,
             role: player.role,
+            meetup: MeetUp.inc(player.id),
         }
         PlayerList.updateHtml()
     },
@@ -154,15 +195,15 @@ const PlayerList = {
             {id: 9, name: "高贵坦克", role: "tank", job: "DRK"},
             {id: 10, name: "治疗小姐", role: "healer", job: "SGE"},
         ]
-        for (i in fakePlayers) {
-            fakePlayers[i].level = fakeLevel()
-            PlayerList.add(fakePlayers[i])
+        for (let fakePlayer of fakePlayers) {
+            fakePlayer.level = fakeLevel()
+            PlayerList.add(fakePlayer)
         }
     },
 }
 
 const FontSize = {
-    configKey: "playerlist:fontsize",
+    configKey: "fontsize",
     updateHtml: () => PlayerList.div().css('font-size', Config.get(FontSize.configKey)),
     toggle: () => {
         switch (Config.get(FontSize.configKey)) {
@@ -183,7 +224,7 @@ const FontSize = {
 }
 
 const Hidable = {
-    configKey: "playerlist:hide",
+    configKey: "hide",
     updateHtml: () => {
         if (Config.get(Hidable.configKey)) {
             $('.hidable').hide()
@@ -198,7 +239,7 @@ const Hidable = {
 }
 
 const FocusMode = {
-    configKey: "playerlist:focus",
+    configKey: "focus",
     updateHtml: () => {
         if (Config.get(FocusMode.configKey)) {
             $('.focus-hidden').hide()
