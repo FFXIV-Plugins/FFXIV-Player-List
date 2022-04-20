@@ -14,6 +14,9 @@
 * Click the lock and set "Click Though" in the overlay plugin to enter focus mode. Click the lock again to unlock.
     * ![screenshot-03](resources/screenshot-03.jpg)
 
+* Meet Up counts. Click this button will reset the meet up counter after your comfirmation.
+    * ![screenshot-03](resources/screenshot-04.jpg)
+
 ## Usage
 ### Get Started
 1. Open ACT → Plugin → ngld Overlay → new.

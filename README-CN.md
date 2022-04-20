@@ -14,6 +14,9 @@
 * 点击小锁头，并在插件中设置「鼠标穿透」，进入无干扰模式；再次点击小锁头解锁。
     * ![screenshot-03](resources/screenshot-03.jpg)
 
+* 见面计数。点击并确认后将重置见面计数器。
+    * ![screenshot-03](resources/screenshot-04.jpg)
+
 ## 使用方法
 ### 初次使用
 1. 打开 ACT → 插件 → ngld 悬浮窗插件 → 新建。
