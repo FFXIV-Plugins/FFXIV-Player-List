@@ -2,7 +2,7 @@
 
 > 🇺🇸 English · [🇨🇳 简体中文](README-CN.md)
 
-[🔗FFXIV Player List](https://ffxiv-plugins.github.io/FFXIV-Player-List/) This is a plugin for FFXIV ACT Ngld Overlay. Show players around you. Colored name based on the job. For players under level 80, show their levels.
+[🔗FFXIV Player List](https://ffxiv-plugins.github.io/FFXIV-Player-List/) This is a plugin for FFXIV ACT Ngld Overlay. Show players around you. Sort the players based on your meet ups. Count the number of unique players you met. Colored name based on the job. For players under level 80, show their levels.
 
 ## Screenshots
 * Show players around you in the list. Can select font size from small, medium or large.
