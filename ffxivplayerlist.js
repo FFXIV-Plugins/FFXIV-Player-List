@@ -1,4 +1,4 @@
-const VERSION = "6.00.1"
+const VERSION = "6.00.2"
 const MAX_LEVEL = 90
 
 function i18n () {
@@ -127,13 +127,17 @@ const PlayerParser = {
 const PlayerCount = {
     div: () => $("#player-count"),
     updateHtml: () => {
-        let player_count = Object.keys(PlayerList.players).length - 1  // exclude player self.
+        let player_count = Object.keys(PlayerList.players).length
         if (player_count > 0) {
             PlayerCount.div().text(player_count)
         } else {
             PlayerCount.div().text("")
         }
     }
+}
+
+const primaryPlayer = {
+
 }
 
 const PlayerList = {
@@ -160,7 +164,7 @@ const PlayerList = {
         PlayerList.updateHtml()
     },
     add: (player) => {
-        if (!player.id) {
+        if (!player.id || player.id == primaryPlayer['id']) {
             return false
         }
         PlayerList.players[player.id] = {
@@ -261,7 +265,13 @@ function update (data) {
         return null
     }
     let [logType, logTime, ...logProperties] = data.line
-    // console.log(`logtype:${logType}: ${logProperties}`)
+    // LogType refers to: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md
+    console.log(`logtype:${logType}: ${logProperties}`)
+    if (logType == '02') {  // Primary Player Change
+        let [primaryPlayerId, primaryPlayerName, ...primaryPlayerEtc] = logProperties
+        primaryPlayer['id'] = primaryPlayerId
+        primaryPlayer['Name'] = primaryPlayerName
+    }
     if (logType == '03' || logType == '04') {  // Player/Npc/Monster show up/leave
         let [logId, logName, logJob, logLevel, logOwnerId, logServerId, logServerName, ...logEtc] = logProperties
         if (!logServerName) {
