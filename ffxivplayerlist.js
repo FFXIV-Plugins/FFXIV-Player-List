@@ -266,7 +266,7 @@ function update (data) {
     }
     let [logType, logTime, ...logProperties] = data.line
     // LogType refers to: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md
-    console.log(`logtype:${logType}: ${logProperties}`)
+    // console.log(`logtype:${logType}: ${logProperties}`)
     if (logType == '02') {  // Primary Player Change
         let [primaryPlayerId, primaryPlayerName, ...primaryPlayerEtc] = logProperties
         primaryPlayer['id'] = primaryPlayerId
