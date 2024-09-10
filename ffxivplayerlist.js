@@ -1,4 +1,4 @@
-const VERSION = "6.00.2"
+const VERSION = "7.00.1"
 const MAX_LEVEL = 90
 
 function i18n () {
