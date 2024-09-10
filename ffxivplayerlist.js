@@ -1,4 +1,4 @@
-const VERSION = "7.00.1"
+const VERSION = "7.00.2"
 const MAX_LEVEL = 90
 
 function i18n () {
@@ -62,7 +62,10 @@ const MeetUp = {
 const PlayerParser = {
     parseLevel: (levelHex) => parseInt(levelHex, 16),
     parseJob: (jobId) => {
+        // Job IDs: https://github.com/anoyetta/ACT.Hojoring/blob/master/source/FFXIV.Framework/FFXIV.Framework/XIVHelper/Jobs.cs
+        // Job Abbrs: https://github.com/OverlayPlugin/cactbot/tree/main/resources/ffxiv/jobs
         jobIdMap = {
+            "0": "ADV",
             "1": "GLA",
             "2": "PGL",
             "3": "MRD",
@@ -79,7 +82,7 @@ const PlayerParser = {
             "E": "ALC",
             "F": "CUL",
             "10": "MIN",
-            "11": "BTN",
+            "11": "BOT",
             "12": "FSH",
             "13": "PLD",
             "14": "MNK",
@@ -102,7 +105,9 @@ const PlayerParser = {
             "25": "GNB",
             "26": "DNC",
             "27": "RPR",
-            "28": "SGE"
+            "28": "SGE",
+            "29": "VPR",
+            "2A": "PCT"
         }
         let jobAbbr = jobIdMap[jobId]
         return jobAbbr || `Unknown (Job ID: ${jobId})`
@@ -114,7 +119,7 @@ const PlayerParser = {
             return "healer"
         } else if (["MNK", "DRG", "NIN", "SAM", "BRD", "MCH", "DNC", "SMN", "BLM", "RDM", 'PGL', 'LNC', 'ARC', 'ROG', 'ACN', 'THM', "BLU", "RPR", "VPR", "PCT"].includes(job)) {
             return "dps"
-        } else if (["MIN", "BTN", "FSH"].includes(job)) {
+        } else if (["MIN", "BOT", "FSH"].includes(job)) {
             return "gatherer"
         } else if (["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL"].includes(job)) {
             return "crafter"
