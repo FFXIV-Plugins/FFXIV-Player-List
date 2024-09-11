@@ -1,16 +1,36 @@
-const VERSION = "7.00.2"
+const VERSION = "7.00.5"
 const MAX_LEVEL = 90
 
 function i18n () {
     callOverlayHandler({call: "getLanguage"}).then((lang) => {
-        if (lang.language=== 'Chinese') {
-            $(".chinese").show()
-            $(".english").hide()
+        if (lang.language === 'Chinese') {
+            showSelectorAll(".chinese")
+            hideSelectorAll(".english")
         } else {
-            $(".chinese").hide()
-            $(".english").show()
+            hideSelectorAll(".chinese")
+            showSelectorAll(".english")
         }
     })
+}
+
+function hideSelectorAll (selector) {
+    document.querySelectorAll(selector).forEach(element => {
+        if (element.style.display !== 'none') {
+            element.setAttribute('data-display', element.style.display)
+        }
+        element.style.display = 'none';
+    });
+}
+
+function showSelectorAll (selector) {
+    document.querySelectorAll(selector).forEach(element => {
+        let dataDisplay = element.getAttribute('data-display')
+        if (!dataDisplay) {
+            element.style.removeProperty('display')
+        } else {
+            element.style.display = dataDisplay
+        }
+    });
 }
 
 const Config = {
@@ -23,6 +43,7 @@ const Config = {
 }
 
 const MeetUp = {
+    div: () => document.querySelector("#meetup-player-count"),
     get: (key) => {
         return window.localStorage.getItem(`playerlist:meetup:${key}`)
     },
@@ -53,9 +74,8 @@ const MeetUp = {
     count: () => {
         return MeetUp.keys().length
     },
-    div: () => $("#meetup-player-count"),
     updateHtml: () => {
-        MeetUp.div().text(MeetUp.count())
+        MeetUp.div().textContent = MeetUp.count()
     },
 }
 
@@ -113,30 +133,75 @@ const PlayerParser = {
         return jobAbbr || `Unknown (Job ID: ${jobId})`
     },
     parseRole: (job) => {
-        if (["PLD", "WAR", "GNB", "DRK", 'GLA', 'MRD'].includes(job)) {  //TODO: add base jobs
-            return "tank"
-        } else if (["WHM", "SCH", "AST", 'CNJ', 'SGE'].includes(job)) {
-            return "healer"
-        } else if (["MNK", "DRG", "NIN", "SAM", "BRD", "MCH", "DNC", "SMN", "BLM", "RDM", 'PGL', 'LNC', 'ARC', 'ROG', 'ACN', 'THM', "BLU", "RPR", "VPR", "PCT"].includes(job)) {
-            return "dps"
-        } else if (["MIN", "BOT", "FSH"].includes(job)) {
-            return "gatherer"
-        } else if (["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL"].includes(job)) {
-            return "crafter"
-        } else {
-            return job
+        switch (job) {
+            // Tank
+            case 'GLA':
+            case 'PLD':
+            case 'MRD':
+            case 'WAR':
+            case 'DRK':
+            case 'GNB':
+                return "tank";
+            // Healer
+            case 'CNJ':
+            case 'WHM':
+            case 'SCH':
+            case 'AST':
+            case 'SGE':
+                return "healer";
+            // Melee DPS
+            case 'PGL':
+            case 'MNK':
+            case 'LNC':
+            case 'DRG':
+            case 'ROG':
+            case 'NIN':
+            case 'SAM':
+            case 'RPR':
+            case 'VPR':
+            // Range DPS
+            case 'ARC':
+            case 'BRD':
+            case 'MCH':
+            case 'DNC':
+            // Magic DPS
+            case 'THM':
+            case 'BLM':
+            case 'ACN':
+            case 'SMN':
+            case 'RDM':
+            case 'PCT':
+            case 'BLU':
+                return "dps";
+            // Gatherer
+            case 'MIN':
+            case 'BOT':
+            case 'FSH':
+                return "gatherer";
+            // Crafter
+            case 'CRP':
+            case 'BSM':
+            case 'ARM':
+            case 'GSM':
+            case 'LTW':
+            case 'WVR':
+            case 'ALC':
+            case 'CUL':
+                return "crafter";
+            default:
+                return job;
         }
     }
 }
 
 const PlayerCount = {
-    div: () => $("#player-count"),
+    div: () => document.querySelector("#player-count"),
     updateHtml: () => {
-        let player_count = Object.keys(PlayerList.players).length
+        let player_count = PlayerList.count()
         if (player_count > 0) {
-            PlayerCount.div().text(player_count)
+            PlayerCount.div().textContent = player_count
         } else {
-            PlayerCount.div().text("")
+            PlayerCount.div().textContent = ""
         }
     }
 }
@@ -147,19 +212,24 @@ const primaryPlayer = {
 
 const PlayerList = {
     players: {},
-    div: () => $("#player-list-div"),
+    div: () => document.querySelector("#player-list-div"),
     updateHtml: () => {
-        PlayerList.div().html("")
+        PlayerList.div().innerHTML = ""
         let sortedIds = Object.keys(PlayerList.players).sort((id1, id2) => parseInt(PlayerList.players[id2].meetup) - parseInt(PlayerList.players[id1].meetup))
         for (let id of sortedIds) {
             let player = PlayerList.players[id]
-            PlayerList.div().append(`
-                <span class="player color-${player.role} pull-right">
-                    <span class="">${player.name}</span>
-                    <em class="color-dim">♡${player.meetup}</em>
-                    <em class="small">${player.level == 90 ? "" : "Lv." + player.level}</em>
-                </span>
-            `)
+            let player_div = document.createElement("div")
+            player_div.classList.add("bg-opacity-dark-25", "p-1", "rounded")
+            player_div.innerHTML = `
+                <div class="player color-${player.role}">
+                    <div class="player-name">${player.name}</div>
+                    <div class="player-info">
+                        <span class="player-meetup">♥${player.meetup}</span>
+                        <span class="player-level">${player.level == 90 ? "" : "Lv." + player.level}</span>
+                    </div>
+                </div>
+            `
+            PlayerList.div().appendChild(player_div)
         }
         PlayerCount.updateHtml()
         MeetUp.updateHtml()
@@ -187,6 +257,7 @@ const PlayerList = {
         }
         PlayerList.updateHtml()
     },
+    count: () => Object.keys(PlayerList.players).length,
     test: () => {
         const fakeLevel = () => {
             let level = Math.floor(Math.random() * MAX_LEVEL * 1.5) + 1
@@ -213,7 +284,7 @@ const PlayerList = {
 
 const FontSize = {
     configKey: "fontsize",
-    updateHtml: () => PlayerList.div().css('font-size', Config.get(FontSize.configKey)),
+    updateHtml: () => PlayerList.div().style.fontSize = Config.get(FontSize.configKey),
     toggle: () => {
         switch (Config.get(FontSize.configKey)) {
             case "small":
@@ -236,9 +307,9 @@ const Hidable = {
     configKey: "hide",
     updateHtml: () => {
         if (Config.get(Hidable.configKey)) {
-            $('.hidable').hide()
+            hideSelectorAll('.hidable')
         } else {
-            $('.hidable').show()
+            showSelectorAll('.hidable')
         }
     },
     toggle: () => {
@@ -251,11 +322,26 @@ const FocusMode = {
     configKey: "focus",
     updateHtml: () => {
         if (Config.get(FocusMode.configKey)) {
-            $('.focus-hidden').hide()
-            $('.focus-show').show()
+            document.querySelectorAll('.focus-hidden').forEach(element => {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('.focus-show').forEach(element => {
+                element.style.display = 'block';
+            });
         } else {
-            $('.focus-hidden').show()
-            $('.focus-show').hide()
+            document.querySelectorAll('.focus-hidden').forEach(element => {
+                element.style.display = 'block';
+            });
+            document.querySelectorAll('.focus-show').forEach(element => {
+                element.style.display = 'none';
+            });
+        }
+        if (Config.get(FocusMode.configKey)) {
+            hideSelectorAll('.focus-hidden')
+            showSelectorAll('.focus-show')
+        } else {
+            showSelectorAll('.focus-hidden')
+            hideSelectorAll('.focus-show')
         }
     },
     toggle: () => {
@@ -303,11 +389,11 @@ addOverlayListener("LogLine", (e) => update(e))
 addOverlayListener("ChangeZone", (e) => PlayerList.clear())
 startOverlayEvents()
 
-$(function () {
+document.addEventListener('DOMContentLoaded', function () {
     i18n()
     Hidable.updateHtml()
     FocusMode.updateHtml()
     FontSize.updateHtml()
     PlayerList.updateHtml()
     console.log(`[LOADED] FFXIV Player List: Version ${VERSION}`)
-})
+});
