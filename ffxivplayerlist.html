@@ -2,10 +2,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>FFXIV Player List</title>
-        <link rel="stylesheet" href="3rd/bootstrap.min.css">
         <script src="3rd/common.min.js"></script>
-        <script src="3rd/jquery.js"></script>
-        <script charset="utf-8" src="ffxivplayerlist.js?version=7.00.5"></script>
+        <script charset="utf-8" src="ffxivplayerlist.js?version=7.00.6"></script>
         <style>
             /* utils */
             .bg-opacity-dark-50 {
@@ -14,11 +12,17 @@
             .bg-opacity-dark-25 {
                 background-color: rgba(46, 52, 64, 0.25) !important; /* nord0 Polar Night (Darkest) */
             }
+            .bg-transparent {
+                background-color: transparent !important;
+            }
             .rounded {
                 border-radius: 5px !important;
             }
             .p-1 {
                 padding: 0.25rem !important;
+            }
+            .ml-5 {
+                margin-left: 1.25rem !important;
             }
             .btn {
                 display: inline-block;
@@ -56,6 +60,35 @@
             .hidden {
                 display: none;
             }
+            .text-shadow {
+                text-shadow: 0px 0px 2px black;
+            }
+            .overflow-hidden {
+                overflow: hidden;
+            }
+            .container-fluid {
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            .row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+            .col {
+                flex-basis: 0;
+                -ms-flex-preferred-size: 0;
+                flex-grow: 1;
+                -ms-flex-positive: 1;
+                min-width: 0;
+                max-width: 100%;
+            }
             /* dom */
             body {
                 background-color: transparent;
@@ -89,13 +122,12 @@
                 grid-auto-flow: dense;
                 grid-template-columns: repeat(auto-fit, minmax(max-content, 100px));
                 gap: 5px;
-                justify-content: space-around;
+                justify-content: space-between;
                 align-items: center;
             }
             .player-name {
                 white-space: nowrap;
                 word-break: keep-all;
-                overflow-x: hidden;
                 font-weight: 500;
             }
             .player-info {

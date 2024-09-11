@@ -1,4 +1,4 @@
-const VERSION = "7.00.5"
+const VERSION = "7.00.6"
 const MAX_LEVEL = 90
 
 function i18n () {
@@ -30,6 +30,12 @@ function showSelectorAll (selector) {
         } else {
             element.style.display = dataDisplay
         }
+    });
+}
+
+function toggleSelectorAll (selector) {
+    document.querySelectorAll(selector).forEach(element => {
+        element.style.display === 'none' ? showSelectorAll(selector) : hideSelectorAll(selector)
     });
 }
 
@@ -314,7 +320,7 @@ const Hidable = {
     },
     toggle: () => {
         Config.set(Hidable.configKey, Config.get(Hidable.configKey) ? "" : "on")
-        $('.hidable').fadeToggle('fast')
+        toggleSelectorAll('.hidable')
     },
 }
 
