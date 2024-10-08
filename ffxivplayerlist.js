@@ -1,5 +1,5 @@
 const VERSION = "7.00.8"
-const MAX_LEVEL = 90
+const MAX_LEVEL = 100
 
 function i18n () {
     callOverlayHandler({call: "getLanguage"}).then((lang) => {
@@ -230,8 +230,11 @@ const PlayerList = {
                 <div class="player color-${player.role}">
                     <div class="player-name">${player.name}</div>
                     <div class="player-info">
-                        <span class="player-meetup">♥${player.meetup}</span>
-                        <span class="player-level">${player.level == 90 ? "" : "Lv." + player.level}</span>
+                        <small class="player-meetup">♥${player.meetup}</small>
+                        <small class="player-level ${player.level == MAX_LEVEL ? 'hidden' : ''}">
+                            <span class="player-level-prefix">Lv.</span>
+                            ${player.level}
+                        </small>
                     </div>
                 </div>
             `
@@ -265,10 +268,6 @@ const PlayerList = {
     },
     count: () => Object.keys(PlayerList.players).length,
     test: () => {
-        const fakeLevel = () => {
-            let level = Math.floor(Math.random() * MAX_LEVEL * 1.5) + 1
-            return  level >= MAX_LEVEL ? MAX_LEVEL : level
-        }
         let fakePlayers = [
             {id: 1, name: "Mr.Crafter", role: "crafter", job: "ALC"},
             {id: 2, name: "Mrs.Gatherer", role: "gatherer", job: "FSH"},
@@ -282,7 +281,7 @@ const PlayerList = {
             {id: 10, name: "治疗小姐", role: "healer", job: "SGE"},
         ]
         for (let fakePlayer of fakePlayers) {
-            fakePlayer.level = fakeLevel()
+            fakePlayer.level = Math.random() < 0.3 ? MAX_LEVEL : Math.floor(Math.random() * MAX_LEVEL) + 1  // 30% chance to be MAX_LEVEL, otherwise random level
             PlayerList.add(fakePlayer)
         }
     },
