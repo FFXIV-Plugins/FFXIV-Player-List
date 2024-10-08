@@ -1,4 +1,4 @@
-const VERSION = "7.00.10"
+const VERSION = "7.00.11"
 const MAX_LEVEL = 100
 
 function i18n () {
@@ -228,15 +228,15 @@ const PlayerList = {
             player_div.classList.add("bg-opacity-dark-50", "p-025rem", "rounded")
             player_div.innerHTML = `
                 <div class="player color-${player.role}">
-                    <div class="player-name">${player.name}</div>
-                    <div class="player-info">
-                        <small class="player-meetup">
-                            <span class="player-meetup-prefix">♥</span>${player.meetup}
-                        </small>
-                        <small class="player-level ${player.level == MAX_LEVEL ? 'hidden' : ''}">
-                            <span class="player-level-prefix">Lv.</span>${player.level}
-                        </small>
-                    </div>
+                    <span class="player-name">${player.name}</span>
+                    <span class="invisible">·</span>
+                    <small class="player-level ${player.level == MAX_LEVEL ? 'hidden' : ''}">
+                        <span class="player-level-prefix">Lv.</span>${player.level}
+                    </small>
+                    <span class="invisible">·</span>
+                    <small class="player-meetup">
+                        <span class="player-meetup-prefix">♥</span>${player.meetup}
+                    </small>
                 </div>
             `
             PlayerList.div().appendChild(player_div)

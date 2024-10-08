@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>FFXIV Player List</title>
         <script src="3rd/common.min.js"></script>
-        <script charset="utf-8" src="ffxivplayerlist.js?version=7.00.10"></script>
+        <script charset="utf-8" src="ffxivplayerlist.js?version=7.00.11"></script>
         <style>
             /* utils */
             .bg-opacity-dark-50 {
@@ -59,6 +59,9 @@
             }
             .hidden {
                 display: none;
+            }
+            .invisible {
+                visibility: hidden;
             }
             .text-shadow {
                 text-shadow: 0px 0px 2px black;
@@ -120,19 +123,19 @@
             #player-list-div {
                 display: grid;
                 grid-auto-flow: dense;
-                grid-template-columns: repeat(auto-fit, minmax(max-content, 100px));
+                grid-template-columns: repeat(auto-fit, minmax(max-content, 166px));
                 gap: 5px;
                 justify-content: start;
                 pointer-events: none;
+            }
+            .player {
+                display: flex;
+                justify-content: space-between;
             }
             .player-name {
                 white-space: nowrap;
                 word-break: keep-all;
                 font-weight: 500;
-            }
-            .player-info {
-                display: flex;
-                justify-content: space-between;
             }
             .player-meetup {
                 color: inherit;
