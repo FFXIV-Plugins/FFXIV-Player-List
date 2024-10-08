@@ -1,4 +1,4 @@
-const VERSION = "7.00.8"
+const VERSION = "7.00.9"
 const MAX_LEVEL = 100
 
 function i18n () {
@@ -225,7 +225,7 @@ const PlayerList = {
         for (let id of sortedIds) {
             let player = PlayerList.players[id]
             let player_div = document.createElement("div")
-            player_div.classList.add("bg-opacity-dark-50", "p-1", "rounded")
+            player_div.classList.add("bg-opacity-dark-50", "p-025rem", "rounded")
             player_div.innerHTML = `
                 <div class="player color-${player.role}">
                     <div class="player-name">${player.name}</div>

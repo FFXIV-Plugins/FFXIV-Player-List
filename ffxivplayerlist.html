@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>FFXIV Player List</title>
         <script src="3rd/common.min.js"></script>
-        <script charset="utf-8" src="ffxivplayerlist.js?version=7.00.8"></script>
+        <script charset="utf-8" src="ffxivplayerlist.js?version=7.00.9"></script>
         <style>
             /* utils */
             .bg-opacity-dark-50 {
@@ -18,11 +18,11 @@
             .rounded {
                 border-radius: 5px !important;
             }
-            .p-1 {
+            .p-025rem {
                 padding: 0.25rem !important;
             }
-            .ml-5 {
-                margin-left: 1.25rem !important;
+            .ml-2rem {
+                margin-left: 2rem !important;
             }
             .btn {
                 display: inline-block;
@@ -122,7 +122,7 @@
                 grid-auto-flow: dense;
                 grid-template-columns: repeat(auto-fit, minmax(max-content, 100px));
                 gap: 5px;
-                justify-content: right;
+                justify-content: start;
                 pointer-events: none;
             }
             .player-name {
@@ -143,6 +143,9 @@
                 font-size: normal;
                 filter: brightness(80%);
             }
+            .player-level-prefix {
+                opacity: 0.5;
+            }
             .text-shadow {
                 text-shadow: 0px 0px 2px black;
             }
@@ -152,7 +155,7 @@
     <body class="overflow-hidden">
         <div class="container-fluid bg-transparent">
             <div class="row">
-                <div class="col p-1">
+                <div class="col p-025rem">
                     <span id="hidable-toggle" class="focus-hidden btn btn-outline-light btn-sm text-white bg-opacity-dark-50" onclick="Hidable.toggle()">
                         🚶
                         <span id="player-count" class="text-shadow"></span>
@@ -168,8 +171,8 @@
                         </span>
                         <span class="focus-hidden btn btn-sm text-white" onclick="FocusMode.toggle()">🔒</span>
                         <span class="focus-show btn btn-sm text-white" onclick="FocusMode.toggle()">🔓</span>
-                        <div class="ml-5 p-1">
-                            <div id="player-list-div" class="p-1 text-shadow"></div>
+                        <div class="ml-2rem p-025rem">
+                            <div id="player-list-div" class="p-025rem text-shadow"></div>
                         </div>
                     </span>
                 </div><!--.col-->
