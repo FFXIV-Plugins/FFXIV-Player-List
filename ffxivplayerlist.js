@@ -1,4 +1,4 @@
-const VERSION = "7.00.9"
+const VERSION = "7.00.10"
 const MAX_LEVEL = 100
 
 function i18n () {
@@ -230,10 +230,11 @@ const PlayerList = {
                 <div class="player color-${player.role}">
                     <div class="player-name">${player.name}</div>
                     <div class="player-info">
-                        <small class="player-meetup">♥${player.meetup}</small>
+                        <small class="player-meetup">
+                            <span class="player-meetup-prefix">♥</span>${player.meetup}
+                        </small>
                         <small class="player-level ${player.level == MAX_LEVEL ? 'hidden' : ''}">
-                            <span class="player-level-prefix">Lv.</span>
-                            ${player.level}
+                            <span class="player-level-prefix">Lv.</span>${player.level}
                         </small>
                     </div>
                 </div>
