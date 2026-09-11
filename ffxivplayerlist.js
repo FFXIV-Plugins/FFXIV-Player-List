@@ -1,4 +1,4 @@
-const VERSION = "7.00.11"
+const VERSION = "7.56.1"
 const MAX_LEVEL = 100
 
 function i18n () {
@@ -88,7 +88,7 @@ const MeetUp = {
 const PlayerParser = {
     parseLevel: (levelHex) => parseInt(levelHex, 16),
     parseJob: (jobId) => {
-        // Job IDs: https://github.com/anoyetta/ACT.Hojoring/blob/master/source/FFXIV.Framework/FFXIV.Framework/XIVHelper/Jobs.cs
+        // Job IDs: https://github.com/anoyetta/ACT.Hojoring/blob/master/source/FFXIV.Framework/XIVHelper/Jobs.cs
         // Job Abbrs: https://github.com/OverlayPlugin/cactbot/tree/main/resources/ffxiv/jobs
         jobIdMap = {
             "0": "ADV",
@@ -133,7 +133,8 @@ const PlayerParser = {
             "27": "RPR",
             "28": "SGE",
             "29": "VPR",
-            "2A": "PCT"
+            "2A": "PCT",
+            "2B": "BST"
         }
         let jobAbbr = jobIdMap[jobId]
         return jobAbbr || `Unknown (Job ID: ${jobId})`
@@ -165,6 +166,7 @@ const PlayerParser = {
             case 'SAM':
             case 'RPR':
             case 'VPR':
+            case 'BST':
             // Range DPS
             case 'ARC':
             case 'BRD':
@@ -376,6 +378,9 @@ function update (data) {
         }
         if (logType == '03') {  // Player/Npc/Monster show up
             let job = PlayerParser.parseJob(logJob)
+            if (job.startsWith("Unknown")) {
+                console.log(`[ERROR] FFXIV Player List: ${logName} (ID: ${logId}) has an unknown job ID: ${logJob}`)
+            }
             PlayerList.add({
                 id: logId,
                 job: job,
